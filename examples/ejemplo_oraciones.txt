@@ -1,0 +1,6 @@
+@deck: aula
+# Formato: una oracion por linea ->  ingles | espanol   (las lineas con # se ignoran)
+I get lots of newspapers delivered to my house. | Me entregan muchos periódicos en mi casa.
+That fee has gone up dramatically. | Esa tarifa ha subido muchísimo.
+These companies are looking for other ways of avoiding paying that fee. | Estas empresas buscan otras formas de evitar pagar esa tarifa.
+They come right to my doorstep, and I pick them up in the morning. | Llegan justo a mi puerta y los recojo por la mañana.

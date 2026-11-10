@@ -1,0 +1,4 @@
+* text=auto
+*.whl binary
+*.mp3 binary
+*.apkg binary

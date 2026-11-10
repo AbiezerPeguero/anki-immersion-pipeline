@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/input/*
+data/transcripts/*
+data/audio/*
+data/decks/*
+data/tmp/*
+!data/**/.gitkeep
+
+# Caches y archivos del sistema
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.DS_Store
+Thumbs.db
+.idea/

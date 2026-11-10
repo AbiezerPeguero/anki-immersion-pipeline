@@ -1,0 +1,65 @@
+[project]
+name = "anki-immersion-pipeline"
+version = "0.1.0"
+description = "Audio/Video/Imagen -> transcripcion -> oraciones -> voz (TTS) -> mazo Anki (.apkg). Todo local en GPU."
+readme = "README.md"
+# 3.12 es el punto dulce: Kokoro exige <3.13 y torch/ctranslate2/easyocr/spacy tienen wheels maduros.
+# No subir a 3.13/3.14 hasta que Kokoro lo soporte (con versiones muy nuevas de Python hay librerias que fallan).
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    # --- GPU / Deep Learning (torch viene del indice CUDA 12.6, ver [tool.uv.sources]) ---
+    "torch",
+    "torchvision",
+    # --- Transcripcion (Whisper optimizado con CTranslate2) ---
+    "faster-whisper>=1.2.1",
+    # --- Voz (TTS) ---
+    "kokoro>=0.9.4",
+    "soundfile",
+    "en-core-web-sm",          # modelo spaCy que usa misaki (G2P de Kokoro); se instala sin pip
+    # --- Anki ---
+    "genanki>=0.13.1",
+    # --- OCR ---
+    "easyocr",
+    # --- Descarga y audio ---
+    "yt-dlp[default,deno]",    # YouTube exige yt-dlp-ejs + un runtime JS; ambos vienen empaquetados (sin instalar nada aparte)
+    "imageio-ffmpeg",          # trae ffmpeg.exe empaquetado: no hay que instalar nada en Windows
+    # --- Utilidades ---
+    "python-dotenv",
+]
+
+[dependency-groups]
+dev = ["pytest", "ruff", "pip"]
+# Opcional: dependencias para exponer el nucleo como servicio HTTP/BD (no se usan en el flujo normal): uv sync --group business
+business = ["psycopg[binary]", "fastapi", "uvicorn[standard]", "httpx"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/anki_pipeline"]
+
+# ---------------- uv ----------------
+[tool.uv]
+# Freno a "librerias demasiado nuevas con librerias viejas": kokoro (abr-2025), easyocr (sep-2024)
+# y faster-whisper (oct-2025) declaran rangos abiertos (av>=11, opencv sin tope, numpy sin tope).
+# Sin esto uv instalaria opencv 5.x / numpy 2.5 / av 19, recien salidos y sin probar con ellas.
+constraint-dependencies = [
+    "av>=14,<17",
+    "opencv-python-headless>=4.10,<5",
+    "numpy>=2.0,<2.4",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true   # solo se usa para los paquetes listados abajo
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126", marker = "sys_platform == 'win32' or sys_platform == 'linux'" }
+torchvision = { index = "pytorch-cu126", marker = "sys_platform == 'win32' or sys_platform == 'linux'" }
+en-core-web-sm = { path = "vendor/en_core_web_sm-3.8.0-py3-none-any.whl" }
+
+[tool.ruff]
+line-length = 100

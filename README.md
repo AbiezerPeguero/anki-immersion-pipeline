@@ -5,6 +5,7 @@
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
 ![CUDA 12.6](https://img.shields.io/badge/CUDA-12.6-76B900)
 ![Anki](https://img.shields.io/badge/export-Anki%20.apkg-2d6cdf)
+[![tests](https://github.com/AbiezerPeguero/anki-immersion-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/AbiezerPeguero/anki-immersion-pipeline/actions/workflows/tests.yml)
 
 > *English summary:* a local, GPU-accelerated pipeline that turns English videos or audio into Anki flashcard decks.
 > YouTube link or audio file → Whisper large-v3 transcript → sentences chosen and translated by an AI chat (from a ready-made prompt) →

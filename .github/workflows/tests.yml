@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Instalar dependencias de las pruebas (no necesitan GPU)
-        run: pip install pytest genanki opencv-python-headless numpy
+        run: pip install pytest genanki opencv-python-headless numpy huggingface-hub
       - name: Correr pruebas
         run: PYTHONPATH=src python -m pytest -q

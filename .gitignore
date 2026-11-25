@@ -16,3 +16,4 @@ data/tmp/*
 .DS_Store
 Thumbs.db
 .idea/
+Claude outputs/

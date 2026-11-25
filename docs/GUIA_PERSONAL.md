@@ -169,7 +169,7 @@ C:\dev-n8n\n8n-personal\
 │   └── generar_oraciones.md   versión legible + instrucciones (para el caso texto/foto)
 ├── scripts\               los comandos que ejecutas
 ├── src\anki_pipeline\     el código reutilizable (config, transcribe, tts, anki_deck, decks, ...)
-├── tests\                 27 pruebas automáticas
+├── tests\                 29 pruebas automáticas
 └── data\                  (ignorado por git)
     ├── input\             tus archivos de oraciones y medios de entrada
     │   └── downloads\     audios descargados de YouTube
@@ -304,7 +304,7 @@ Notas:
 python -m pytest -q
 ```
 
-Hay 27 pruebas que cubren: formato de la transcripción, lectura de oraciones, nombres de audio, IDs estables de Anki, registro de mazos, validación de enlaces, OCR, el armado del mensaje y las validaciones del lanzador.
+Hay 29 pruebas que cubren: formato de la transcripción, lectura de oraciones, nombres de audio, IDs estables de Anki, registro de mazos, validación de enlaces, OCR, el armado del mensaje y las validaciones del lanzador.
 
 ---
 

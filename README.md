@@ -59,7 +59,7 @@ Cada etapa es un **script independiente** que carga su modelo, trabaja y termina
 - **Varios mazos:** un registro de alias (`aula`, `blogs`, `podcast`) y una línea `@deck:` en el archivo de oraciones deciden a qué mazo va cada lote.
 - **Un comando por camino:** `transcribir` (antes del chat) y `armar` (después del chat).
 - **Errores claros:** el lector de oraciones reporta **todos** los problemas de un archivo de una vez, con el número de línea.
-- **Pruebas automáticas:** 27 pruebas que no necesitan GPU.
+- **Pruebas automáticas:** 29 pruebas que no necesitan GPU.
 - **OCR opcional** (EasyOCR) para sacar texto de fotos.
 
 ## Requisitos
@@ -142,7 +142,7 @@ anki-immersion-pipeline/
 ├── scripts/               los comandos: run.py (lanzador), 00_download … 03_build_deck, check_env, etc.
 ├── prompts/               plantilla del mensaje para la IA
 ├── examples/              archivo de oraciones de ejemplo
-├── tests/                 27 pruebas automáticas (no necesitan GPU)
+├── tests/                 29 pruebas automáticas (no necesitan GPU)
 ├── docs/                  documentación técnica y guía de uso diario
 ├── vendor/                modelo de spaCy incluido localmente (lo necesita Kokoro)
 ├── data/                  entradas y salidas (ignorado por git)

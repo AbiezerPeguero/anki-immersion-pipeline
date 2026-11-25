@@ -663,7 +663,7 @@ Las oraciones con palabras nuevas **cuentan dentro de la cantidad mínima** pedi
 
 ## 14. Pruebas
 
-**27 pruebas** con `pytest`. **No necesitan GPU ni modelos descargados**, porque los imports pesados son perezosos y las pruebas cubren la lógica que no depende de ellos.
+**29 pruebas** con `pytest`. **No necesitan GPU ni modelos descargados**, porque los imports pesados son perezosos y las pruebas cubren la lógica que no depende de ellos.
 
 ```powershell
 uv run python -m pytest -q

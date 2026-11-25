@@ -44,6 +44,25 @@ def render_transcripts(rows: Sequence[Row]) -> tuple[str, str]:
     return clean, stamped
 
 
+def load_whisper_model(model_cls, model_name: str, compute_type: str):
+    """Carga Whisper desde el disco; solo usa la red si el modelo no esta descargado.
+
+    Con un nombre de modelo, faster-whisper siempre consulta Hugging Face (snapshot_download),
+    y esa consulta puede quedarse colgada con la red lenta. Por eso se intenta primero con
+    local_files_only=True. Si el modelo no esta en la cache, huggingface_hub lanza
+    LocalEntryNotFoundError y entonces se reintenta con red (descarga unica).
+    """
+    from huggingface_hub.errors import LocalEntryNotFoundError
+
+    try:
+        return model_cls(
+            model_name, device="cuda", compute_type=compute_type, local_files_only=True
+        )
+    except LocalEntryNotFoundError:
+        print(f"El modelo {model_name} no esta en disco: descargandolo de Hugging Face (una sola vez) ...")
+        return model_cls(model_name, device="cuda", compute_type=compute_type)
+
+
 def transcribe_file(
     audio_path: str | Path,
     out_dir: str | Path | None = None,
@@ -67,7 +86,7 @@ def transcribe_file(
     ensure_cuda_dlls()
     from faster_whisper import BatchedInferencePipeline, WhisperModel
 
-    model = WhisperModel(model_name, device="cuda", compute_type=compute_type)
+    model = load_whisper_model(WhisperModel, model_name, compute_type)
 
     t0 = time.perf_counter()
     if batch_size > 1:

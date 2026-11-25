@@ -27,7 +27,7 @@ English sentence | Traducción al español
 English sentence | Traducción al español
 
 Una oración por línea, separadas por " | ". Sin numeración, sin viñetas, sin comillas. Las oraciones con mis palabras llevan el mismo formato, sin marcas.
-Fuera del bloque no agregues nada, salvo una nota breve si alguna parte de la transcripción no se entendía y, si usé "Palabras:", la nota de oraciones extendidas.
+Fuera del bloque no agregues nada, salvo una nota breve si alguna parte de la transcripción no se entendía, la nota de oraciones extendidas si usé "Palabras:", y siempre al final una línea con las oraciones que quedan: el número exacto de oraciones más de esta transcripción que cumplen estas mismas reglas (contadas una por una) y si alcanzan para otro lote (sí, parcial o no).
 
 Transcripción:
 {{TEXT}}

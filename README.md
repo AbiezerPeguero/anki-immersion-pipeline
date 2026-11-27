@@ -56,7 +56,7 @@ Cada etapa es un **script independiente** que carga su modelo, trabaja y termina
 - **Transcripción rápida y precisa:** faster-whisper con el modelo `large-v3` en `float16`. Medido en una RTX 4060 (8 GB): pico de **4.85 GB de VRAM** y hasta **~33x tiempo real**.
 - **Voz natural y estable:** Kokoro-82M con una mezcla de dos voces; la misma oración produce siempre el mismo audio.
 - **Importaciones sin duplicados:** los IDs del mazo, del tipo de nota y de cada tarjeta son **deterministas**. Importar el mismo lote dos veces no duplica, y un lote nuevo se suma al mismo mazo.
-- **Varios mazos:** un registro de alias (`aula`, `blogs`, `podcast`) y una línea `@deck:` en el archivo de oraciones deciden a qué mazo va cada lote.
+- **Varios mazos:** un registro de alias (`aula`, `blogs`, `podcast`, `raio`) y una línea `@deck:` en el archivo de oraciones deciden a qué mazo va cada lote.
 - **Un comando por camino:** `transcribir` (antes del chat) y `armar` (después del chat).
 - **Errores claros:** el lector de oraciones reporta **todos** los problemas de un archivo de una vez, con el número de línea.
 - **Pruebas automáticas:** 29 pruebas que no necesitan GPU.
@@ -123,7 +123,7 @@ uv run python scripts/run.py armar data/input/mi_lote.txt
 
 El resultado queda en `data/decks/aula__mi_lote.apkg`. Haz doble clic para importarlo en Anki: las tarjetas se **suman** al mazo existente y las que ya estaban no se duplican.
 
-**Mazos.** Los alias `aula`, `blogs` y `podcast` vienen definidos en [`src/anki_pipeline/config.py`](src/anki_pipeline/config.py) (`DECKS`) con los nombres del autor. Cámbialos por los tuyos **antes de la primera importación**: el nombre del mazo determina su identidad en Anki.
+**Mazos.** Los alias `aula`, `blogs`, `podcast` y `raio` vienen definidos en [`src/anki_pipeline/config.py`](src/anki_pipeline/config.py) (`DECKS`) con los nombres del autor. Cámbialos por los tuyos **antes de la primera importación**: el nombre del mazo determina su identidad en Anki.
 
 **Palabras nuevas (opcional).** Si escribes al final del mensaje una línea como `Palabras: hefty, waive, hang out`, la IA incluye esas palabras en oraciones del video (añadiendo hasta 3 palabras más para que suenen naturales). Sin esa línea, todas las oraciones son fieles al video.
 

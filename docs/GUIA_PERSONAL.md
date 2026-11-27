@@ -79,12 +79,22 @@ python scripts/run.py transcribir "https://www.youtube.com/watch?v=XXXXXXXXXXX" 
 python scripts/run.py transcribir "https://www.youtube.com/watch?v=XXXXXXXXXXX" --deck podcast --n 10
 ```
 
+**Mazo `raio` — "RAIO"** (curso RAIO: historias cortas e interactivas)
+
+```powershell
+# Audio grabado con el celular (pásalo antes a la carpeta data\input\):
+python scripts/run.py transcribir "data\input\raio_historia1.m4a" --deck raio --n 10
+```
+
+> El archivo puede ser `.m4a`, `.mp3`, `.wav`, etc. Whisper está fijado a inglés (`WHISPER_LANGUAGE = "en"` en `config.py`): si en el audio hay tramos en español, saldrán mal transcritos.
+> Como las historias repiten frases, si una oración sale repetida en el archivo de oraciones se avisa y queda una sola tarjeta.
+
 Cuando termine verás `COPIADO al portapapeles`. Entonces:
 
 1. Abre el chat (Claude / DeepSeek) y pega con **Ctrl + V**. Envía.
 2. La IA te devuelve **un bloque de código** con las oraciones. Cópialo.
 3. Pégalo en un archivo nuevo dentro de `data\input\` con un nombre descriptivo, por ejemplo `data\input\blogs_uruguay.txt`.
-   La primera línea debe ser `@deck: blogs` (o `aula` / `podcast`); la IA ya la trae. Si faltara, escríbela tú arriba.
+   La primera línea debe ser `@deck: blogs` (o `aula` / `podcast` / `raio`); la IA ya la trae. Si faltara, escríbela tú arriba.
 
 > Si el portapapeles falla, el mensaje también queda guardado en `data\transcripts\<nombre>.prompt.txt`: ábrelo, copia todo y pégalo en el chat.
 
@@ -112,6 +122,7 @@ Eso es todo: **A → chat → B → C**.
 | `aula`       | Inglés Inmersión | `python scripts/run.py transcribir "<archivo o enlace>" --deck aula --n 10` |
 | `blogs`      | Sergii Speaks    | `python scripts/run.py transcribir "<enlace>" --deck blogs --n 10`          |
 | `podcast`    | TED              | `python scripts/run.py transcribir "<enlace>" --deck podcast --n 10`        |
+| `raio`       | RAIO             | `python scripts/run.py transcribir "<archivo de audio>" --deck raio --n 10` |
 
 Siempre después: `python scripts/run.py armar data\input\<tu_archivo>.txt` y se importa el `.apkg`.
 
@@ -231,7 +242,7 @@ Reglas para no romperlo:
 | Lote de Whisper | `WHISPER_BATCH_SIZE = 4`                              | Pico 4.85 GB de VRAM y ~33x tiempo real (batch 1: 5.24 GB y 7x). |
 | Beam / idioma   | `5` / `"en"`                                          |                                                                  |
 | Voz Kokoro      | `af_heart,af_bella` (mezcla), velocidad `1.0`         | Elegida por tu oído entre varias pruebas.                        |
-| Mazos           | `DECKS = {"aula": ..., "blogs": ..., "podcast": ...}` | Ver sección 4.                                                   |
+| Mazos           | `DECKS = {"aula": ..., "blogs": ..., "podcast": ..., "raio": ...}` | Ver sección 4.                                                   |
 | OCR             | solo inglés, preproceso gris + CLAHE                  | Sin usar en tu rutina personal.                                  |
 
 No cambies la voz ni la velocidad sin necesidad: forman parte del nombre de los audios.
@@ -247,6 +258,7 @@ DECKS: dict[str, str] = {
     "aula": "Inglés Inmersión",
     "blogs": "Sergii Speaks",
     "podcast": "TED",
+    "raio": "RAIO",
     "nuevo": "Nombre del canal",   # alias: minúsculas, sin espacios | nombre: como se verá en Anki
 }
 ```

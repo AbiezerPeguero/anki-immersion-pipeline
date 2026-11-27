@@ -484,7 +484,7 @@ Casi toda la configuración vive en [`src/anki_pipeline/config.py`](../src/anki_
 | `OCR_LANGUAGES`                                                                                 | `("en",)`                               | Idiomas del OCR.                                                   | Sí.                                                       |
 | `OCR_MAG_RATIO`                                                                                 | `1.0`                                   | Ampliación de la imagen antes de leer.                             | Sí.                                                       |
 | `OCR_DECODER`                                                                                   | `"greedy"`                              | Decodificador de EasyOCR.                                          | Sí.                                                       |
-| `DECKS`                                                                                         | `{"aula": …, "blogs": …, "podcast": …}` | Registro `alias → nombre del mazo en Anki`.                        | Agregar alias: sí. **Renombrar mazos ya importados: no.** |
+| `DECKS`                                                                                         | `{"aula": …, "blogs": …, "podcast": …, "raio": …}` | Registro `alias → nombre del mazo en Anki`.                        | Agregar alias: sí. **Renombrar mazos ya importados: no.** |
 | `DECK_NAME`                                                                                     | `DECKS["aula"]`                         | Mazo por defecto de las funciones de bajo nivel.                   | Sí.                                                       |
 | `MODEL_NAME`                                                                                    | `"Inglés Inmersión (Audio)"`            | Nombre del tipo de nota de Anki.                                   | **No** después de importar.                               |
 | `MODEL_VERSION`                                                                                 | `1`                                     | Se sube solo si cambian los campos o las plantillas de la tarjeta. | Solo en ese caso.                                         |
@@ -496,6 +496,7 @@ DECKS: dict[str, str] = {
     "aula": "Inglés Inmersión",
     "blogs": "Sergii Speaks",
     "podcast": "TED",
+    "raio": "RAIO",
 }
 ```
 

@@ -42,6 +42,7 @@ DECKS: dict[str, str] = {
     "aula": "Inglés Inmersión",   # todo lo que ensenan en el aula
     "blogs": "Sergii Speaks",     # canal: videos viajando y hablando con varias personas en ingles
     "podcast": "TED",             # canal: TED
+    "raio": "RAIO",               # curso RAIO: historias cortas e interactivas (audios grabados con el celular)
     # "alias": "Nombre del mazo",   <- para agregar otro: alias en minusculas, sin espacios; nombre = como se vera en Anki
 }
 DECK_NAME = DECKS["aula"]  # mazo por defecto para las funciones de bajo nivel

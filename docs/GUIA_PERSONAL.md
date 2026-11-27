@@ -83,10 +83,11 @@ python scripts/run.py transcribir "https://www.youtube.com/watch?v=XXXXXXXXXXX" 
 
 ```powershell
 # Audio grabado con el celular (pásalo antes a la carpeta data\input\):
-python scripts/run.py transcribir "data\input\raio_historia1.m4a" --deck raio --n 10
+python scripts/run.py transcribir "data\input\raio_historia1.m4a" --deck raio
 ```
 
 > El archivo puede ser `.m4a`, `.mp3`, `.wav`, etc. Whisper está fijado a inglés (`WHISPER_LANGUAGE = "en"` en `config.py`): si en el audio hay tramos en español, saldrán mal transcritos.
+> Aquí no se indica cantidad (`--n`): el Project de RAIO ignora la cantidad del mensaje y entrega todas las oraciones de la historia, en orden.
 > Como las historias repiten frases, si una oración sale repetida en el archivo de oraciones se avisa y queda una sola tarjeta.
 
 Cuando termine verás `COPIADO al portapapeles`. Entonces:
@@ -122,7 +123,7 @@ Eso es todo: **A → chat → B → C**.
 | `aula`       | Inglés Inmersión | `python scripts/run.py transcribir "<archivo o enlace>" --deck aula --n 10` |
 | `blogs`      | Sergii Speaks    | `python scripts/run.py transcribir "<enlace>" --deck blogs --n 10`          |
 | `podcast`    | TED              | `python scripts/run.py transcribir "<enlace>" --deck podcast --n 10`        |
-| `raio`       | RAIO             | `python scripts/run.py transcribir "<archivo de audio>" --deck raio --n 10` |
+| `raio`       | RAIO             | `python scripts/run.py transcribir "<archivo de audio>" --deck raio` |
 
 Siempre después: `python scripts/run.py armar data\input\<tu_archivo>.txt` y se importa el `.apkg`.
 
